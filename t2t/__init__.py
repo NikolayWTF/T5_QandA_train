@@ -171,7 +171,7 @@ class T5BaseModel(pl.LightningModule):
             max_len=self.config.max_len, is_classifier=is_classifier
         )
         self.metrics = [
-            ("acc", torchmetrics.Accuracy(compute_on_step=False))
+            # ("acc", torchmetrics.classification.Accuracy(compute_on_step=False))
         ]
         self.train_loss_tracker = pls.utils.EMATracker(alpha=0.02)
 
