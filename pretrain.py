@@ -13,14 +13,13 @@ from transformers import T5ForConditionalGeneration, T5Tokenizer
 from Cord19Dataset import Cord19Dataset, DATASET_DIR, Parts
 from t2t import BaseConfig, T5BaseModel, masked_cross_entropy_loss
 
-
 class Corpus(enum.Enum):
-    CORD19 = "cord19"
+    CORD19 = "dataset_cache/"
 
 
 @dataclass
 class Config(BaseConfig):
-    dataset: Corpus = Corpus.CORD19
+    dataset: str = Corpus.CORD19
 
 
 class T5Model(T5BaseModel):
@@ -40,7 +39,7 @@ class T5Model(T5BaseModel):
 def main(
         t5_model: str = "t5-base", lr: float = 1e-4,  # 3^4
         epochs: int = 5, fp16: bool = False,
-        dataset: Corpus = Corpus.CORD19, batch_size: int = 16,
+        dataset: str = Corpus.CORD19, batch_size: int = 16,
         max_len: int = 64, grad_accu: int = 1,
         num_gpus: int = 1
 ):
