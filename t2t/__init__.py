@@ -234,10 +234,10 @@ class T5BaseModel(pl.LightningModule):
     def training_step_end(self, outputs):
         loss = outputs["loss"].mean()
         self.train_loss_tracker.update(loss.detach())
-        if self._should_log(outputs["log"]):
-            self.logger.log_metrics({
-                "train_loss": self.train_loss_tracker.value
-            }, step=self.global_step)
+        # if self._should_log(outputs["log"]):
+        #     self.logger.log_metrics({
+        #         "train_loss": self.train_loss_tracker.value
+        #     }, step=self.global_step)
         return loss
 
     def training_step(self, batch, batch_idx):
