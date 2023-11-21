@@ -37,7 +37,7 @@ class T5Model(T5BaseModel):
 
 
 def main(
-        t5_model: str = "t5-base", lr: float = 1e-4,  # 3^4
+        t5_model: str = "cointegrated/rut5-base-multitask", lr: float = 1e-4,  # 3^4
         epochs: int = 5, fp16: bool = False,
         dataset: str = Corpus.CORD19, batch_size: int = 16,
         max_len: int = 64, grad_accu: int = 1,
