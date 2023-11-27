@@ -108,7 +108,7 @@ def write_disk(input_ids, target_ids, file_counter):
 
 def main(tokenizer_name: str = typer.Option("t5-base", help="T5 tokenizer used for token ids."),
          valid_size: float = typer.Option(0.2, help="Validation set size."),
-         dumps_size: int = typer.Option(20, help="Size in MB for the dataset raw files."),
+         dumps_size: int = typer.Option(60, help="Size in MB for the dataset raw files."),
          mask_probability: float = typer.Option(0.15, help="Probability of masking a token in a sentence.")):
     """This script preprocesses and tokenizes a standardized pretraining text Dataset (a file with a sentence in each
     line) into a set of tokenized files for training and validating the text2text model."""
@@ -118,7 +118,7 @@ def main(tokenizer_name: str = typer.Option("t5-base", help="T5 tokenizer used f
     dot_token_1 = tokenizer.convert_tokens_to_ids([")."])[0]
     mask_tokens = tokenizer.additional_special_tokens_ids
     meta = {}
-    words_per_dump = 300 * dumps_size  # approx. 300_000 words per mb of dump file.
+    words_per_dump = 300_000 * dumps_size  # approx. 300_000 words per mb of dump file.
     with open(DATA_FILE, 'r', encoding='utf-8', errors='ignore') as in_file:
         number_lines = len([0 for _ in in_file])
         in_file.seek(0)  # after reading number of lines, restart file pointer
